@@ -1,0 +1,19 @@
+---
+- hosts: lab-debian
+  become: yes
+  remote_user: ansible
+  tasks:
+  - name: configure hostname and domain name
+    net_system:
+      hostname: ios01
+      domain_name: test.example.com
+      domain-search:
+        - ansible.com
+        - redhat.com
+        - cisco.com
+  
+  - name: configure name servers
+    net_system:
+      name_servers:
+        - 8.8.8.8
+        - 8.8.4.4

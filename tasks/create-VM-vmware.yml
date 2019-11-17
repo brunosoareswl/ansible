@@ -43,3 +43,19 @@
     - name: IP address info
       debug:
         msg: "{{ newvm.instance.ipv4 }} {{ name }}"
+
+- name: Change network adapter settings of virtual machine
+  vmware_guest_network:
+    hostname: "{{ vcenter_hostname }}"
+    username: "{{ vcenter_username }}"
+    password: "{{ vcenter_password }}"
+    datacenter: "{{ datacenter_name }}"
+    validate_certs: no
+    name: test-vm
+    gather_network_info: false
+    networks:
+      - name: "VM Network"
+        state: present
+        connected: false
+  delegate_to: localhost
+  register: network_info
