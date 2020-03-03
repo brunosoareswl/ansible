@@ -1,0 +1,8 @@
+---
+# vars file for create
+instance_type: t2.medium
+security_group: lab-ssh-remote
+image: ami-046842448f9e74e7d
+keypair: KP-Study
+region: us-east-1
+count: 3
